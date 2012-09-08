@@ -10,10 +10,15 @@ Use
 For a C# program, the signature might look like this:
 
 ``LogOff.cs (21): ;{{{}{}{;;}}}
+
 MainViewModel.cs (103): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}
+
 MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
+
 MenuItemExtension.cs (17): ;;;{{{{;}}}}
+
 MouseWheelGesture.cs (56): ;{{{}{}{;;}{{{};}}{{{};}}{{{};}}{{{};}}{;;;{
+
 MutuallyExclusiveCheckBoxes.cs (42): ;;{{{;}{;}{;;;;}{;}{;}{;}}}``
 
 Each Line shows the signature of a single file like this:
@@ -53,6 +58,7 @@ Apart from the code-related patterns above, you should look out for anything tha
 
 ``
 MainViewModel.cs (180): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}{{;}{;}}{;;;;;}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}
+
 MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
 ``
 
