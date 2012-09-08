@@ -9,14 +9,12 @@ Use
 ===
 For a C# program, the signature might look like this:
 
-<pre>
-LogOff.cs (21): ;{{{}{}{;;}}}
+`LogOff.cs (21): ;{{{}{}{;;}}}
 MainViewModel.cs (103): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}
 MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
 MenuItemExtension.cs (17): ;;;{{{{;}}}}
 MouseWheelGesture.cs (56): ;{{{}{}{;;}{{{};}}{{{};}}{{{};}}{{{};}}{;;;{
-MutuallyExclusiveCheckBoxes.cs (42): ;;{{{;}{;}{;;;;}{;}{;}{;}}}
-</pre>
+MutuallyExclusiveCheckBoxes.cs (42): ;;{{{;}{;}{;;;;}{;}{;}{;}}}`
 
 Each Line shows the signature of a single file like this:
 
@@ -28,9 +26,7 @@ What to look out for
 ====================
 In different languages different patterns emerge. 
 
-<pre>
-MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
-</pre>
+`MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}`
 
 Imports (Usings) 
 ----------------
