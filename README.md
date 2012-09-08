@@ -1,7 +1,7 @@
 Signature Survey
 ================
 
-This is an adoption of Ward Cunningham's (Signature Survey)[http://c2.com/doc/SignatureSurvey/]. I am using it as a kata whenever I wan't to learn a new programming language. 
+This is an adoption of Ward Cunningham's [Signature Survey](http://c2.com/doc/SignatureSurvey/).I am using it as a kata whenever I wan't to learn a new programming language. 
 
 A signature survey is a print of all Statements (;) and Blocks ({}) of a program that was written in a C-Family language (Java, CSharp, C, Cpp, etc. ). It is supposed to be a method to browse the source code of a large and unfamiliar software. Although it is meant to generate browsable, nested reports, I found that it does not have to be browsable to be useful. The 'signature' of a program is the simplest form of visualization one can create and can be interpreted as a simple form of code metric. Rather than installing NDepend or a large measurement solution on a foreign machine, you can easily checkout or download the 50 LOC python script and run it. It gives you immeadiate feedback on the health of a solution. Look out for patterns, repetitions and other things. You can quickly identify unhealthy spots.
 
@@ -9,12 +9,14 @@ Use
 ===
 For a C# program, the signature might look like this:
 
+<pre>
 LogOff.cs (21): ;{{{}{}{;;}}}
 MainViewModel.cs (103): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}
 MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
 MenuItemExtension.cs (17): ;;;{{{{;}}}}
 MouseWheelGesture.cs (56): ;{{{}{}{;;}{{{};}}{{{};}}{{{};}}{{{};}}{;;;{
 MutuallyExclusiveCheckBoxes.cs (42): ;;{{{;}{;}{;;;;}{;}{;}{;}}}
+</pre>
 
 Each Line shows the signature of a single file like this:
 
@@ -26,7 +28,9 @@ What to look out for
 ====================
 In different languages different patterns emerge. 
 
+<pre>
 MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
+</pre>
 
 Imports (Usings) 
 ----------------
@@ -42,7 +46,9 @@ Properties
 ----------
 Especially auto properties in C#, which look like this:
 
+<pre>
 public string Name { get; set; }
+</pre>
 
 Result in a pattern like this {;;}. Just like a lot of data fields, too many properties could show that the class publishes data, rather than hiding it. 
 
@@ -51,7 +57,9 @@ Repetitions
 -----------
 Apart from the code-related patterns above, you should look out for anything that might look suspicious. The overall look of the report will indicate whether the solution is healthy. Many short files are good, too many big files are bad. Long streams of curlybraces indicate deep nesting (bad), long streams of semicolons indicate too many statements or too long methods (also bad, at least for OO code). The overall differences count. If you find something like this in a report, you might wan't to check it out:
 
+<pre>
 MainViewModel.cs (180): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}{{;}{;}}{;;;;;}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}
 MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
+</pre>
 
 Look out for averages. If the overall solution contains hundreds of files with an average LOC count of 50 and suddenly there is a file with LOC > 3000, you might want to check out exactly that file. Maybe some time I will actually make this browsable with hyperlinks, but so far it's already a really helpful tool to get a good overview for a random solution. Thanks, Ward! 
