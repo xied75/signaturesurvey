@@ -9,17 +9,17 @@ Use
 ===
 For a C# program, the signature might look like this:
 
-``LogOff.cs (21): ;{{{}{}{;;}}}
+``LogOff.cs (21): ;{{{}{}{;;}}}``
 
-MainViewModel.cs (103): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}
+``MainViewModel.cs (103): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}``
 
-MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
+``MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}``
 
-MenuItemExtension.cs (17): ;;;{{{{;}}}}
+``MenuItemExtension.cs (17): ;;;{{{{;}}}}``
 
-MouseWheelGesture.cs (56): ;{{{}{}{;;}{{{};}}{{{};}}{{{};}}{{{};}}{;;;{
+``MouseWheelGesture.cs (56): ;{{{}{}{;;}{{{};}}{{{};}}{{{};}}{{{};}}{;;;``
 
-MutuallyExclusiveCheckBoxes.cs (42): ;;{{{;}{;}{;;;;}{;}{;}{;}}}``
+``MutuallyExclusiveCheckBoxes.cs (42): ;;{{{;}{;}{;;;;}{;}{;}{;}}}``
 
 Each Line shows the signature of a single file like this:
 
@@ -56,10 +56,8 @@ Repetitions
 -----------
 Apart from the code-related patterns above, you should look out for anything that might look suspicious. The overall look of the report will indicate whether the solution is healthy. Many short files are good, too many big files are bad. Long streams of curlybraces indicate deep nesting (bad), long streams of semicolons indicate too many statements or too long methods (also bad, at least for OO code). The overall differences count. If you find something like this in a report, you might wan't to check it out:
 
-``
-MainViewModel.cs (180): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}{{;}{;}}{;;;;;}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}
+``MainViewModel.cs (180): ;;;;;;{{;;;;;;;;;{;;;}{{;}{;}}{{;}{;}}{{;}{;}}{{;}{;}}{;;;;;}{;;}{;}{;{;;}}{;}{;;}{;;;;}}}{;;}{;}{;{;;}}{;}{;;}``
 
-MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}
-``
+``MainWindow.xaml.cs (42): ;;;;;{{;{;;;}{{;}}{;;;}{;;}}}``
 
 Look out for averages. If the overall solution contains hundreds of files with an average LOC count of 50 and suddenly there is a file with LOC > 3000, you might want to check out exactly that file. Maybe some time I will actually make this browsable with hyperlinks, but so far it's already a really helpful tool to get a good overview for a random solution. Thanks, Ward! 
