@@ -1,51 +1,48 @@
 ﻿open System
 open System.IO
 
-let (|~>) a b = b (List.ofSeq a)
-let concat = String.Concat:char list->string
-
 let interestingCharacters char = 
     match char with 
     | ';' | '{' | '}' -> true 
     | _ -> false
 
-let isCodefile filename = 
-    match Path.GetExtension filename with 
-    | ".cs" -> true
-    | _ -> false
-
 let signature (content:string) = 
     content 
-    |~> List.filter interestingCharacters 
-    |> concat
+    |> Seq.filter interestingCharacters 
+    |> String.Concat
 
-let content path = 
-    File.ReadAllText(path) 
+let content path = File.ReadAllText(path) 
 
-let signatureEntryFor path = 
-    let filename = Path.GetFileName path
-    let signature = path |> content |> signature
-    String.Format("{0}: {1}", filename, signature)    
+let signatureOf path = path |> content |> signature
 
-// Select : List.map
-// Where : List.filter
+let generatedCode = [".g.i.cs" ; ".g.cs"]
+let resharper = [ "_ReSharper"] 
 
-
-
+let skip (path:string) =  
+    generatedCode @ resharper
+    |> List.exists (fun pattern -> path.Contains pattern)
 
 let rec walk exclude pattern path = 
     seq { 
-        for file in Directory.GetFiles(path, pattern, SearchOption.AllDirectories) do if not <| exclude file then yield file 
+        for file in Directory.GetFiles(path, pattern, SearchOption.AllDirectories) do 
+        if not <| exclude file 
+        then yield file 
     } 
 
-let walkCodeFiles = walk (fun (path:string) -> path.Contains "_ReSharper") "*.cs"
+let searchCodeFilesIn = walk skip "*.cs"
 
-// let walkCodeFiles "C:\Users\Johannes Hofmeister\Desktop\Float\okra" |> Seq.map Path.GetFileName;;
+let fileNameAndFile path = (Path.GetFileName path, signatureOf path)
+
+let surveyFor path = 
+    searchCodeFilesIn path 
+    |> Seq.map fileNameAndFile
+    |> Seq.sortBy (fst)
 
 [<EntryPoint>]
 let main argv = 
-    let path = "C:\Users\Johannes Hofmeister\Desktop\Float\okra\Okra"
-    for codefile in walk isCodefile path do 
-        printfn "%s" codefile
+    let path = "D:\\Solutions\\Current\Okra"
+    for filename,signature in surveyFor path do // Side effects go here
+        printf "%s " filename
+        printfn "%s" signature
     0 // return an integer exit code
 

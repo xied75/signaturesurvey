@@ -1,2 +1,6 @@
 relre:Debug 
-relre:suo 
+relre:_ReSharper
+relre:\.suo 
+relre:\.ncrunchsolution 
+relre:\.dotCover 
+relre:\.user
