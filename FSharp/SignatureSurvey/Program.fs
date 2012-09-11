@@ -31,12 +31,12 @@ let rec walk exclude pattern path =
 
 let searchCodeFilesIn = walk skip "*.cs"
 
-let fileNameAndFile path = (Path.GetFileName path, signatureOf path)
+let fileNameAndSignature path = (Path.GetFileName path, signatureOf path)
 
 let surveyFor path = 
     searchCodeFilesIn path 
-    |> Seq.map fileNameAndFile
-    |> Seq.sortBy (fst)
+    |> Seq.map fileNameAndSignature
+    |> Seq.sortBy fst
 
 [<EntryPoint>]
 let main argv = 
