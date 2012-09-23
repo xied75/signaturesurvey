@@ -27,7 +27,7 @@ namespace SignatureSurvey.Tests
             var codeFile = new CodeFile(SampleCodeFile.CodeFileName, SampleCodeFile.Code);
             codeFile.InterestingCharacters.Should().Contain.One(';');
             codeFile.InterestingCharacters.Should().Contain.One('{');
-            codeFile.InterestingCharacters.Should().Contain.Item('}');
+            codeFile.InterestingCharacters.Should().Contain.One('}');
         }
     }
 }

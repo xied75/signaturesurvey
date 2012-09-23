@@ -9,14 +9,13 @@ namespace SurveyConsole
     {
         private static void Main(string[] args)
         {
-            //var path = args[1];
-            string path = "../../Program.cs";
+            var path = args[1];
             var chars = new List<char> {'{', '}', ';'}.ToList();
-            using (FileStream file = File.OpenRead(path))
+            using (var file = File.OpenRead(path))
             {
-                for (int i = 0; i < file.Length; i++)
+                for (var i = 0; i < file.Length; i++)
                 {
-                    char c = (char) file.ReadByte();
+                    var c = (char) file.ReadByte();
                     if (chars.Contains(c))
                         Console.Write(c);
                 }

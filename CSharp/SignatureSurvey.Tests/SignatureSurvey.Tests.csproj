@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeFiles.cs" />
     <Compile Include="CodeFileTests.cs" />
     <Compile Include="FilesTests.cs" />
     <Compile Include="SignatureTests.cs" />

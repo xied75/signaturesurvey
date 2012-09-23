@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using Should.Fluent;
@@ -34,26 +32,6 @@ namespace SignatureSurvey.Tests
             const string directoryName = "test";
             var files = new CodeFiles(directoryName);
             files.Count().Should().Equal(1);
-        }
-    }
-
-    public class CodeFiles : IEnumerable<CodeFile>
-    {
-        private readonly string _directoryName;
-
-        public CodeFiles(string directoryName)
-        {
-            _directoryName = directoryName;
-        }
-
-        public IEnumerator<CodeFile> GetEnumerator()
-        {
-            yield return new CodeFile("a","b");
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }
