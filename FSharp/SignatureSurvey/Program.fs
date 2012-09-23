@@ -11,15 +11,13 @@ let signature (content:string) =
     |> Seq.filter interestingCharacters 
     |> String.Concat
 
-let content path = File.ReadAllText(path) 
+let signatureOf path = path |> File.ReadAllText |> signature
 
-let signatureOf path = path |> content |> signature
-
-let generatedCode = [".g.i.cs" ; ".g.cs"]
+let generatedWpfCode = [".g.i.cs" ; ".g.cs"]
 let resharper = [ "_ReSharper"] 
 
-let skip (path:string) =  
-    generatedCode @ resharper
+let skipGenerated (path:string) =  
+    generatedWpfCode @ resharper
     |> List.exists (fun pattern -> path.Contains pattern)
 
 let rec walk exclude pattern path = 
@@ -29,20 +27,23 @@ let rec walk exclude pattern path =
         then yield file 
     } 
 
-let searchCodeFilesIn = walk skip "*.cs"
+let searchCodeFilesIn = walk skipGenerated "*.cs"
 
-let fileNameAndSignature path = (Path.GetFileName path, signatureOf path)
+let fileNameAndSignature path = (Path.GetFileName path, signatureOf path, (File.ReadAllLines path).Length) 
+
+let first (a,_,_) = a;;
 
 let surveyFor path = 
     searchCodeFilesIn path 
     |> Seq.map fileNameAndSignature
-    |> Seq.sortBy fst
+    |> Seq.sortBy first
 
 [<EntryPoint>]
 let main argv = 
-    let path = "D:\\Solutions\\Current\Okra"
-    for filename,signature in surveyFor path do // Side effects go here
+    let path = argv.[0]
+    for filename,signature,loc in surveyFor path do
         printf "%s " filename
+        printf "(%i): " loc
         printfn "%s" signature
-    0 // return an integer exit code
+    0
 

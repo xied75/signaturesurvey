@@ -1,5 +1,7 @@
 ﻿using System; 
 
+// This is not being compiled but can be used to test the program
+
 namespace Test 
 { 
     public class Program
@@ -9,5 +11,4 @@ namespace Test
             System.Console.WriteLine(args.Length);
         }
     }
-
 }
