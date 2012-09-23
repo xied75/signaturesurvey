@@ -51,4 +51,4 @@ def signature_survey(directory):
 			signature(root, filename)
 
 if __name__ == "__main__":
-	signature_survey("Okra")
+	signature_survey(sys.argv[1])
