@@ -21,11 +21,8 @@ let skipGenerated (path:string) =
     |> List.exists (fun pattern -> path.Contains pattern)
 
 let rec walk exclude pattern path = 
-    seq { 
-        for file in Directory.GetFiles(path, pattern, SearchOption.AllDirectories) do 
-        if not <| exclude file 
-        then yield file 
-    } 
+    Directory.GetFiles(path, pattern, SearchOption.AllDirectories)
+    |> Seq.filter (not << exclude)       
 
 let searchCodeFilesIn = walk skipGenerated "*.cs"
 
