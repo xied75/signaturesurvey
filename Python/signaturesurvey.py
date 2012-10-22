@@ -1,6 +1,7 @@
 #! /usr/bin/python
 import os
 import sys
+from classes.SignatureItem import SignatureItem
 write = sys.stdout.write
 
 codefiles = ['.java','.cs','.c','.cpp','.h']
@@ -17,17 +18,18 @@ def interestingCharacters(file, interesting_characters):
 def lineCount(file):
 	lineCount = len(file.readlines())
 	reset(file)
-	return ("(%s):" % lineCount)
+	return lineCount
 
 def reset(file):
 	file.seek(0)
 	
 def signature(root, filename):
-	print filename,	
+        fName = filename	
 	path = absolutePath(root, filename)
 	with open(path) as file:
-		print lineCount(file),
-		print interestingCharacters(file, c_family)
+		loc = lineCount(file)
+		signature = interestingCharacters(file, c_family)
+		return SignatureItem(fName, loc, signature)
 	
 def extension(filename):
 	return os.path.splitext(filename)[1]
@@ -48,10 +50,15 @@ def isNotACodeFile(filename):
 	return extension(filename) not in codefiles 
 
 def signature_survey(directory):
+        items = []
 	for root,dirs,files in os.walk(directory):
 		for filename in files:
 			if should_skip(filename): continue 			
-			signature(root, filename)
+			items.append(signature(root, filename))
+	return items
 
 if __name__ == "__main__":
-	signature_survey(sys.argv[1])
+	items = signature_survey(sys.argv[1])
+	for item in items:
+                print item
+	
