@@ -10,4 +10,4 @@ Change the last line of the script to the folder you want to monitor.
 
 
 
-(Just a temporary way to run the signare survey, until modules are created.)
+This is just a temporary way to run the signature survey. It should be something like ``@powershell SignatureSurvey.ps1 "D:\Code\PathToProject"`` outside of the script file.
