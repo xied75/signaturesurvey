@@ -39,7 +39,7 @@ def should_skip(filename):
 	return isNotACodeFile(filename) or containsGeneratedCode(filename) or belongsToResharper(filename)
 
 def belongsToResharper(filename):
-	retrn "ReSharper" in filename
+	return "ReSharper" in filename
 
 def containsGeneratedCode(filename):
 	return "g.i.cs" in filename or ".g.cs" in filename
