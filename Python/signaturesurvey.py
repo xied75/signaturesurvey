@@ -36,7 +36,10 @@ def absolutePath(root, filename):
 	return os.path.join(root, filename)
 
 def should_skip(filename):
-	return isNotACodeFile(filename) or containsGeneratedCode(filename)
+	return isNotACodeFile(filename) or containsGeneratedCode(filename) or belongsToResharper(filename)
+
+def belongsToResharper(filename):
+	retrn "ReSharper" in filename
 
 def containsGeneratedCode(filename):
 	return "g.i.cs" in filename or ".g.cs" in filename
