@@ -24,7 +24,7 @@ def reset(file):
 	file.seek(0)
 	
 def signature(root, filename):
-        fName = filename	
+	fName = filename
 	path = absolutePath(root, filename)
 	with open(path) as file:
 		loc = lineCount(file)
@@ -50,7 +50,7 @@ def isNotACodeFile(filename):
 	return extension(filename) not in codefiles 
 
 def signature_survey(directory):
-        items = []
+	items = []
 	for root,dirs,files in os.walk(directory):
 		for filename in files:
 			if should_skip(filename): continue 			
@@ -60,5 +60,5 @@ def signature_survey(directory):
 if __name__ == "__main__":
 	items = signature_survey(sys.argv[1])
 	for item in items:
-                print item
+                print(item)
 	
